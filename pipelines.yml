@@ -2,8 +2,8 @@ resources:
   - name: app
     type: GitRepo
     configuration:
-      gitProvider: myGitHub
-      path: myproject/app
+      gitProvider: GitHub
+      path: lawrencef-jfrog/pipeline-test
       branches:
         include: master
 
