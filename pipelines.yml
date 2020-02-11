@@ -2,7 +2,7 @@ resources:
   - name: app
     type: GitRepo
     configuration:
-      gitProvider: GitHub
+      gitProvider: github
       path: lawrencef-jfrog/pipeline-test
       branches:
         include: master
