@@ -1,50 +1,22 @@
 resources:
-  - name: app
+  - name: myAppRepo
     type: GitRepo
     configuration:
       gitProvider: github
       path: lawrencef-jfrog/pipeline-test
-      branches:
-        include: master
-
 pipelines:
-  - name: barebones_pipeline
+  - name: pipeline_hello_world
+    configuration:
+      environmentVariables:
+        readOnly:
+          MY_MESSAGE: '"Hello World!"'
     steps:
-    - name: step_1
-      type: Bash
-      configuration:
-        inputResources:
-          - name: app
-      execution:
-        onExecute:
-          - printenv
- 
-    - name: step_2
-      type: Bash
-      configuration:
-        inputSteps:
-          - name: step_1
-      execution:
-        onExecute:
-          - printenv
- 
-    - name: step_3
-      type: Bash
-      configuration:
-        inputSteps:
-          - name: step_1
-      execution:
-        onExecute:
-          - printenv
- 
-    - name: step_4
-      type: Bash
-      configuration:
-        inputSteps:
-          - name: step_2
-          - name: step_3
-      execution:
-        onExecute:
-          - printenv
-
-
+      - name: step_1
+        type: Bash
+        configuration:
+          inputResources:
+            - name: myAppRepo
+        execution:
+          onExecute:
+            - echo $MY_MESSAGE
+            - echo “running CI for master”
